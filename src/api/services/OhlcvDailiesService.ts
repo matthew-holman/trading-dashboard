@@ -1,11 +1,11 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-import type { OHLCVDailyRead } from '../models/OHLCVDailyRead';
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+
+import type { OHLCVDailyRead } from "../models/OHLCVDailyRead";
+import type { CancelablePromise } from "../core/CancelablePromise";
+import { OpenAPI } from "../core/OpenAPI";
+import { request as __request } from "../core/request";
 export class OhlcvDailiesService {
   /**
    * List Candles
@@ -14,22 +14,22 @@ export class OhlcvDailiesService {
    */
   public static listCandlesOhlcvDailiesSecurityIdGet({
     securityId,
-    from = '2025-10-20',
-    to = '2025-10-20',
+    from = "2025-10-20",
+    to = "2025-10-20",
   }: {
-    securityId: number,
-    from?: string,
-    to?: string,
+    securityId: number;
+    from?: string;
+    to?: string;
   }): CancelablePromise<Array<OHLCVDailyRead>> {
     return __request(OpenAPI, {
-      method: 'GET',
-      url: '/ohlcv_dailies/{security_id}',
+      method: "GET",
+      url: "/ohlcv_dailies/{security_id}",
       path: {
-        'security_id': securityId,
+        security_id: securityId,
       },
       query: {
-        'from': from,
-        'to': to,
+        from: from,
+        to: to,
       },
       errors: {
         400: `Bad Request`,

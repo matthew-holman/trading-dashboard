@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import axios from "axios";
 import { OpenAPI } from "@/api/core/OpenAPI";
 

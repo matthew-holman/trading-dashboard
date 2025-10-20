@@ -5,7 +5,7 @@ import type { OHLCVDailyRead } from "@/api/models/OHLCVDailyRead";
  * Lightweight Charts expects epoch seconds for `time`.
  */
 export function mapToChartData(records: OHLCVDailyRead[]) {
-  return records.map(r => ({
+  return records.map((r) => ({
     time: Math.floor(new Date(r.candleDate).getTime() / 1000),
     open: parseFloat(r.open),
     high: parseFloat(r.high),

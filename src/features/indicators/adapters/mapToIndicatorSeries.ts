@@ -7,7 +7,7 @@ export type IndicatorSeries = Record<string, { time: number; value: number }[]>;
  */
 export function mapToIndicatorSeries(
   records: TechnicalIndicatorRead[],
-  fields: string[]
+  fields: string[],
 ) {
   const result: Record<string, { time: number; value: number }[]> = {};
 

@@ -1,11 +1,11 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-import type { SecurityRead } from '../models/SecurityRead';
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+
+import type { SecurityRead } from "../models/SecurityRead";
+import type { CancelablePromise } from "../core/CancelablePromise";
+import { OpenAPI } from "../core/OpenAPI";
+import { request as __request } from "../core/request";
 export class SecuritiesService {
   /**
    * List Securities
@@ -15,13 +15,13 @@ export class SecuritiesService {
   public static listSecuritiesSecuritiesGet({
     ids,
   }: {
-    ids?: (Array<number> | null),
+    ids?: Array<number> | null;
   }): CancelablePromise<Array<SecurityRead>> {
     return __request(OpenAPI, {
-      method: 'GET',
-      url: '/securities/',
+      method: "GET",
+      url: "/securities/",
       query: {
-        'ids': ids,
+        ids: ids,
       },
       errors: {
         400: `Bad Request`,
@@ -40,13 +40,13 @@ export class SecuritiesService {
   public static getSecuritySecuritiesSecurityIdGet({
     securityId,
   }: {
-    securityId: number,
+    securityId: number;
   }): CancelablePromise<SecurityRead> {
     return __request(OpenAPI, {
-      method: 'GET',
-      url: '/securities/{security_id}',
+      method: "GET",
+      url: "/securities/{security_id}",
       path: {
-        'security_id': securityId,
+        security_id: securityId,
       },
       errors: {
         400: `Bad Request`,

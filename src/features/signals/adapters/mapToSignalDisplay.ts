@@ -11,7 +11,7 @@ export type SignalDisplay = {
 };
 
 export function mapToSignalDisplay(records: EODSignalRead[]): SignalDisplay[] {
-  return records.map(r => ({
+  return records.map((r) => ({
     id: r.id,
     securityId: r.securityId,
     strategyName: r.strategyName,

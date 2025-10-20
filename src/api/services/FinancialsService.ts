@@ -1,11 +1,11 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-import type { FinancialHealth } from '../models/FinancialHealth';
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+
+import type { FinancialHealth } from "../models/FinancialHealth";
+import type { CancelablePromise } from "../core/CancelablePromise";
+import { OpenAPI } from "../core/OpenAPI";
+import { request as __request } from "../core/request";
 export class FinancialsService {
   /**
    * Get Financial Health
@@ -15,13 +15,13 @@ export class FinancialsService {
   public static getFinancialHealthFinancialsTickerGet({
     ticker,
   }: {
-    ticker: string,
+    ticker: string;
   }): CancelablePromise<FinancialHealth> {
     return __request(OpenAPI, {
-      method: 'GET',
-      url: '/financials/{ticker}',
+      method: "GET",
+      url: "/financials/{ticker}",
       path: {
-        'ticker': ticker,
+        ticker: ticker,
       },
       errors: {
         400: `Bad Request`,

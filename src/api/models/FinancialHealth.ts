@@ -1,8 +1,8 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
-import type { MetricResult } from './MetricResult';
+
+import type { MetricResult } from "./MetricResult";
 export type FinancialHealth = {
   /**
    * Ticker symbol, e.g. AAPL
@@ -11,15 +11,15 @@ export type FinancialHealth = {
   /**
    * Full company name
    */
-  company_name?: (string | null);
+  company_name?: string | null;
   /**
    * Industry sector classification
    */
-  sector?: (string | null);
+  sector?: string | null;
   /**
    * Market capitalization in USD
    */
-  market_cap?: (number | null);
+  market_cap?: number | null;
   /**
    * Composite score from 0–6
    */
@@ -35,30 +35,29 @@ export type FinancialHealth = {
   /**
    * Trailing EPS
    */
-  eps_current?: (number | null);
+  eps_current?: number | null;
   /**
    * Forward or prior-year EPS used for growth calculation
    */
-  eps_previous?: (number | null);
+  eps_previous?: number | null;
   /**
    * Year-over-year revenue growth
    */
-  revenue_growth_yoy?: (number | null);
+  revenue_growth_yoy?: number | null;
   /**
    * Debt-to-equity ratio
    */
-  debt_to_equity?: (number | null);
+  debt_to_equity?: number | null;
   /**
    * Free cash flow in USD
    */
-  free_cash_flow?: (number | null);
+  free_cash_flow?: number | null;
   /**
    * Fraction of shares held by institutions
    */
-  institutional_ownership?: (number | null);
+  institutional_ownership?: number | null;
   /**
    * Trailing P/E ratio
    */
-  pe_ratio?: (number | null);
+  pe_ratio?: number | null;
 };
-

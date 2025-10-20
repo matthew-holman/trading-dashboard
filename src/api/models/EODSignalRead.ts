@@ -1,10 +1,10 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
+
 export type EODSignalRead = {
-  createdAt?: (string | null);
-  updatedAt?: (string | null);
+  createdAt?: string | null;
+  updatedAt?: string | null;
   /**
    * Trading day this signal is based on
    */
@@ -26,15 +26,14 @@ export type EODSignalRead = {
   /**
    * True/False after open validation; None if not yet validated
    */
-  validatedAtOpen?: (boolean | null);
+  validatedAtOpen?: boolean | null;
   /**
    * Open price used during validation from the NEXT trading session
    */
-  nextOpenPrice?: (string | null);
+  nextOpenPrice?: string | null;
   /**
    * List of rule codes that failed during open validation (empty if passed)
    */
   validatedAtOpenFailures?: Array<string>;
   id: number;
 };
-

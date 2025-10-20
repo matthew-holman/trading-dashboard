@@ -10,7 +10,7 @@ export type SecurityDisplay = {
 };
 
 export function mapToDisplayRow(records: SecurityRead[]): SecurityDisplay[] {
-  return records.map(r => ({
+  return records.map((r) => ({
     id: r.id,
     symbol: r.symbol,
     companyName: r.companyName,

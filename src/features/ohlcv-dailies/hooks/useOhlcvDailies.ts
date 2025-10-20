@@ -9,15 +9,20 @@ import { mapToChartData } from "../adapters/mapToChartData";
  * @param from - Optional ISO date string (inclusive)
  * @param to - Optional ISO date string (inclusive)
  */
-export function useOhlcvDailies(securityId: number, from?: string, to?: string) {
+export function useOhlcvDailies(
+  securityId: number,
+  from?: string,
+  to?: string,
+) {
   return useQuery({
     queryKey: ["ohlcv-dailies", securityId, from, to],
     queryFn: async () => {
-      const data = await OhlcvDailiesService.listCandlesOhlcvDailiesSecurityIdGet({
-        securityId,
-        from,
-        to,
-      });
+      const data =
+        await OhlcvDailiesService.listCandlesOhlcvDailiesSecurityIdGet({
+          securityId,
+          from,
+          to,
+        });
 
       return mapToChartData(data);
     },

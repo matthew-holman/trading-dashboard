@@ -6,7 +6,9 @@ export function useSecurity(securityId?: number) {
     queryKey: ["security", securityId],
     queryFn: async () => {
       if (!securityId) return null;
-      return SecuritiesService.getSecuritySecuritiesSecurityIdGet({ securityId });
+      return SecuritiesService.getSecuritySecuritiesSecurityIdGet({
+        securityId,
+      });
     },
     enabled: !!securityId,
   });
