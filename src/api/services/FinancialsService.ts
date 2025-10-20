@@ -2,29 +2,26 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { EODSignalRead } from '../models/EODSignalRead';
+import type { FinancialHealth } from '../models/FinancialHealth';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
-export class SignalsService {
+export class FinancialsService {
   /**
-   * List Signals
-   * @returns EODSignalRead Successful Response
+   * Get Financial Health
+   * @returns FinancialHealth Successful Response
    * @throws ApiError
    */
-  public static listSignalsSignalsGet({
-    from = '2025-10-20',
-    to = '2025-10-20',
+  public static getFinancialHealthFinancialsTickerGet({
+    ticker,
   }: {
-    from?: string,
-    to?: string,
-  }): CancelablePromise<Array<EODSignalRead>> {
+    ticker: string,
+  }): CancelablePromise<FinancialHealth> {
     return __request(OpenAPI, {
       method: 'GET',
-      url: '/signals/',
-      query: {
-        'from': from,
-        'to': to,
+      url: '/financials/{ticker}',
+      path: {
+        'ticker': ticker,
       },
       errors: {
         400: `Bad Request`,

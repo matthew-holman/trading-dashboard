@@ -14,8 +14,8 @@ export class OhlcvDailiesService {
    */
   public static listCandlesOhlcvDailiesSecurityIdGet({
     securityId,
-    from = '2025-10-17',
-    to = '2025-10-17',
+    from = '2025-10-20',
+    to = '2025-10-20',
   }: {
     securityId: number,
     from?: string,
