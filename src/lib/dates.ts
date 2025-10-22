@@ -22,3 +22,9 @@ export function getMostRecentTradingDay(): string {
 
   return d.toISOString().slice(0, 10); // "YYYY-MM-DD"
 }
+
+export function getThreeMonthsAgoIso(): string {
+  const date = new Date(getMostRecentTradingDay());
+  date.setMonth(date.getMonth() - 3);
+  return date.toISOString().split("T")[0];
+}

@@ -11,6 +11,8 @@
     "api:gen": "openapi --input http://localhost:8000/openapi.json --output src/api --client axios --useOptions --indent 2"
   },
   "dependencies": {
+    "@radix-ui/react-scroll-area": "^1.2.10",
+    "@radix-ui/react-tabs": "^1.1.13",
     "@tanstack/react-query": "^5.90.5",
     "axios": "^1.12.2",
     "class-variance-authority": "^0.7.1",
@@ -21,6 +23,7 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-hook-form": "^7.65.0",
+    "react-resizable-panels": "^3.0.6",
     "recharts": "^3.3.0",
     "tailwind-merge": "^3.3.1",
     "zod": "^4.1.12"

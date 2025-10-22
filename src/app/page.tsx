@@ -1,14 +1,45 @@
 "use client";
 
-import { useTradeCandidates } from "@/features/trade-candidates/hooks/useTradeCandidates";
+import {
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
+} from "@/components/ui/resizable";
 import { TradeCandidateList } from "@/features/trade-candidates/components/TradeCandidateList";
+import { SecurityDetailPanel } from "@/features/trade-candidates/components/SecurityDetailPanel";
+import { useTradeCandidates } from "@/features/trade-candidates/hooks/useTradeCandidates";
+import { useState } from "react";
+import { getMostRecentTradingDay } from "@/lib/dates";
 
 export default function DashboardPage() {
-  const tradingDay = "2025-10-20"; // later: dynamic or derived from backend
-  const { candidates, isLoading, isError } = useTradeCandidates(tradingDay);
+  const tradingDay = getMostRecentTradingDay();
+  const { candidates, isLoading } = useTradeCandidates(tradingDay);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
 
-  if (isLoading) return <div>Loading trade candidates...</div>;
-  if (isError) return <div>Error loading data</div>;
+  const selected = candidates.find((c) => c.security.id === selectedId);
 
-  return <TradeCandidateList candidates={candidates} />;
+  return (
+    <ResizablePanelGroup direction="horizontal" className="h-screen">
+      <ResizablePanel defaultSize={35} minSize={25}>
+        <TradeCandidateList
+          candidates={candidates}
+          isLoading={isLoading}
+          selectedId={selectedId}
+          onSelect={setSelectedId}
+        />
+      </ResizablePanel>
+
+      <ResizableHandle withHandle />
+
+      <ResizablePanel>
+        {selected ? (
+          <SecurityDetailPanel candidate={selected} />
+        ) : (
+          <div className="flex items-center justify-center h-full text-muted-foreground">
+            Select a trade candidate to view details
+          </div>
+        )}
+      </ResizablePanel>
+    </ResizablePanelGroup>
+  );
 }
