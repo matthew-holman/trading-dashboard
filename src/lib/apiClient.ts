@@ -9,8 +9,9 @@ OpenAPI.BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000";
 OpenAPI.WITH_CREDENTIALS = false;
 
 export {
-  OhlcvDailiesService,
+  FinancialsService,
   IndicatorsService,
+  OhlcvDailiesService,
   SecuritiesService,
   SignalsService,
 } from "@/api";

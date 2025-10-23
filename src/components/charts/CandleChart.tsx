@@ -11,8 +11,8 @@ import {
   type IChartApi,
   type ISeriesApi,
 } from "lightweight-charts";
+import { cn } from "@/lib/utils"; // or write a tiny cn helper; optional
 
-/** Chart-ready candle point (already transformed) */
 export type CandleSeriesPoint = {
   time: BusinessDay;
   open: number;
@@ -24,19 +24,19 @@ export type CandleSeriesPoint = {
 
 type Props = {
   candles: CandleSeriesPoint[];
-  height?: number;
+  className?: string;
 };
 
-export default function CandleChart({ candles, height = 400 }: Props) {
+export default function CandleChart({ candles, className }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const chartRef = useRef<IChartApi>();
-  const candleSeriesRef = useRef<ISeriesApi<"Candlestick">>();
+  const chartRef = useRef<IChartApi | null>(null);
+  const seriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
     const chart = createChart(containerRef.current, {
-      height,
+      autoSize: true,
       layout: {
         background: { type: ColorType.Solid, color: "transparent" },
         textColor: "#9ca3af",
@@ -45,8 +45,20 @@ export default function CandleChart({ candles, height = 400 }: Props) {
         vertLines: { color: "#1f2937" },
         horzLines: { color: "#1f2937" },
       },
-      timeScale: { borderColor: "#374151" },
-      rightPriceScale: { borderColor: "#374151" },
+      timeScale: {
+        borderColor: "#374151",
+        rightOffset: 5,
+        visible: true,
+      },
+      rightPriceScale: {
+        borderColor: "#374151",
+        scaleMargins: {
+          top: 0.05,
+          bottom: 0.05,
+        },
+      },
+      handleScroll: true,
+      handleScale: true,
     });
 
     const candleSeries = chart.addSeries(CandlestickSeries, {
@@ -59,24 +71,20 @@ export default function CandleChart({ candles, height = 400 }: Props) {
     } satisfies CandlestickSeriesPartialOptions);
 
     chartRef.current = chart;
-    candleSeriesRef.current = candleSeries;
+    seriesRef.current = candleSeries;
 
-    const resize = () =>
-      chart.applyOptions({ height: containerRef.current?.clientHeight });
-    window.addEventListener("resize", resize);
+    return () => chart.remove();
+  }, []);
 
-    return () => {
-      window.removeEventListener("resize", resize);
-      chart.remove();
-    };
-  }, [height]);
-
-  // update chart data when candles change
   useEffect(() => {
-    if (!candleSeriesRef.current || candles.length === 0) return;
-    candleSeriesRef.current.setData(candles as CandlestickData[]);
+    if (!seriesRef.current || candles.length === 0) return;
+    seriesRef.current.setData(candles as CandlestickData[]);
     chartRef.current?.timeScale().fitContent();
   }, [candles]);
 
-  return <div ref={containerRef} className="w-full" style={{ height }} />;
+  return (
+    <div className={cn("relative w-full overflow-hidden", className)}>
+      <div ref={containerRef} className="absolute inset-px" />
+    </div>
+  );
 }
