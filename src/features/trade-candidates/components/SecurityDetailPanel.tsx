@@ -12,9 +12,9 @@ import {
   formatPercent,
 } from "@/features/financials/adapters/formatFinancials";
 
-function getThreeMonthsAgoIso(fromDate: string): string {
+function getSixMonthsAgo(fromDate: string): string {
   const d = new Date(fromDate);
-  d.setMonth(d.getMonth() - 3);
+  d.setMonth(d.getMonth() - 6);
   return d.toISOString().split("T")[0];
 }
 
@@ -24,11 +24,11 @@ export function SecurityDetailPanel({ candidate }: Props) {
   const { security, signals } = candidate;
 
   const mostRecentDay = getMostRecentTradingDay();
-  const threeMonthsAgo = getThreeMonthsAgoIso(mostRecentDay);
+  const sixMonthsAgo = getSixMonthsAgo(mostRecentDay);
 
   const { data: rawCandles = [], isLoading: loadingCandles } = useOhlcvDailies(
     security.id,
-    threeMonthsAgo,
+    sixMonthsAgo,
     mostRecentDay,
   );
 
