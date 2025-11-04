@@ -13,20 +13,26 @@ import { getMostRecentTradingDay } from "@/lib/dates";
 
 export default function DashboardPage() {
   const tradingDay = getMostRecentTradingDay();
+  console.log(tradingDay);
   const { candidates, isLoading } = useTradeCandidates(tradingDay);
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
   const selected = candidates.find((c) => c.security.id === selectedId);
 
   return (
-    <ResizablePanelGroup direction="horizontal" className="h-screen">
+    <ResizablePanelGroup
+      direction="horizontal"
+      className="h-[calc(100vh-4rem)]"
+    >
       <ResizablePanel defaultSize={35} minSize={25}>
-        <TradeCandidateList
-          candidates={candidates}
-          isLoading={isLoading}
-          selectedId={selectedId}
-          onSelect={setSelectedId}
-        />
+        <div className="h-full overflow-y-auto border-r border-border">
+          <TradeCandidateList
+            candidates={candidates}
+            isLoading={isLoading}
+            selectedId={selectedId}
+            onSelect={setSelectedId}
+          />
+        </div>
       </ResizablePanel>
 
       <ResizableHandle withHandle />
